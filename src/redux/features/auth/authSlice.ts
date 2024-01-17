@@ -9,7 +9,8 @@ const initialState: TAuthState = {
   user: null,
   token: null,
 };
-export const authSlice = createSlice({
+
+const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
@@ -19,8 +20,8 @@ export const authSlice = createSlice({
       state.token = token;
     },
     logout: (state) => {
-      state.token = null;
       state.user = null;
+      state.token = null;
     },
   },
 });

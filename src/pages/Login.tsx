@@ -1,6 +1,9 @@
 import { Button } from "antd";
 import { useForm } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
+import { verifyToken } from "../utils/verifyToken";
+import { useAppDispatch } from "../redux/hook";
+import { setUser } from "../redux/features/auth/authSlice";
 
 type TSubmit = {
   userId: string;
@@ -16,14 +19,18 @@ const Login = () => {
   });
 
   const [login] = useLoginMutation();
+  const dispatch = useAppDispatch();
 
-  const onSubmit = (data: TSubmit) => {
-    const userData = {
+  const onSubmit = async (data: TSubmit) => {
+    const userInfo = {
       id: data.userId,
       password: data.password,
     };
-    login(userData);
+    const res = await login(userInfo).unwrap();
+    const user = verifyToken(res.data.accessToken);
+    dispatch(setUser({ user: user, token: res.data.accessToken }));
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
