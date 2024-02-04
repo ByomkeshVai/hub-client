@@ -9,17 +9,23 @@ type PHSelectProps = {
 
 const PHSelect = ({ label, name, options }: PHSelectProps) => {
   return (
-    <Form.Item label={label}>
-      <Controller
-        rules={{
-          required: true,
-        }}
-        name={name}
-        render={({ field }) => (
-          <Select {...field} style={{ width: "100%" }} options={options} />
-        )}
-      />
-    </Form.Item>
+    <Controller
+      rules={{
+        required: true,
+      }}
+      name={name}
+      render={({ field, fieldState: { error } }) => (
+        <Form.Item label={label}>
+          <Select
+            {...field}
+            style={{ width: "100%" }}
+            options={options}
+            size="large"
+          />
+          {error && <small style={{ color: "red" }}>{error.message}</small>}
+        </Form.Item>
+      )}
+    />
   );
 };
 
