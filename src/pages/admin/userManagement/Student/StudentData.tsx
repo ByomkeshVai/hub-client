@@ -29,6 +29,8 @@ const StudentData = () => {
     ...params,
   ]);
 
+  console.log(studentData);
+
   console.log({ isLoading, isFetching });
 
   const metaData = studentData?.meta;
