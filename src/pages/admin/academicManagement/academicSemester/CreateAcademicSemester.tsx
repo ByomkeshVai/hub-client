@@ -38,7 +38,6 @@ const CreateAcademicSemester = () => {
       } else {
         toast.success("Semester Created", { id: toastId });
       }
-      console.log(res);
     } catch (error) {
       toast.error("Something went wrong", { id: toastId });
     }
@@ -51,8 +50,12 @@ const CreateAcademicSemester = () => {
           onSubmit={onsubmit}
           resolver={zodResolver(academicSemesterSchema)}
         >
-          <PHSelect label="name" name="name" options={semesterOptions} />
-          <PHSelect label="year" name="year" options={yearOptions} />
+          <PHSelect
+            label="Semester Name"
+            name="name"
+            options={semesterOptions}
+          />
+          <PHSelect label="Semester Year" name="year" options={yearOptions} />
           <PHSelect
             label="Start Month"
             name="startMonth"
