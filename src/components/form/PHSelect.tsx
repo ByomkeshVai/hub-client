@@ -6,9 +6,10 @@ type PHSelectProps = {
   name: string;
   options: { value: string; label: string; disabled?: boolean }[] | undefined;
   disabled?: boolean;
+  mode?: "multiple" | undefined;
 };
 
-const PHSelect = ({ label, name, options, disabled }: PHSelectProps) => {
+const PHSelect = ({ label, name, options, disabled, mode }: PHSelectProps) => {
   return (
     <Controller
       rules={{
@@ -19,6 +20,7 @@ const PHSelect = ({ label, name, options, disabled }: PHSelectProps) => {
         <Form.Item label={label}>
           <Select
             {...field}
+            mode={mode}
             style={{ width: "100%" }}
             options={options}
             size="large"
