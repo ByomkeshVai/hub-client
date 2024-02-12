@@ -42,7 +42,7 @@ const Courses = () => {
   );
 };
 
-const AddFacultyModal = ({ facultyInfo }) => {
+const AddFacultyModal = ({ facultyInfo }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: facultiesData } = useGetAllFacultiesQuery(undefined);
   const [addFaculties] = useAddFacultiesMutation();

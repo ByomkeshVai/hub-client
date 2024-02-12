@@ -22,12 +22,14 @@ const ProtectedRoute = ({ children, role }: TProtectedRoute) => {
     user = verifyToken(token);
   }
 
-  const dispatch = useAppDispatch();
+  console.log(user);
 
-  if (role !== undefined && role !== (user as TUser)?.role) {
-    dispatch(logout());
-    return <Navigate to="/login" replace={true} />;
-  }
+  // const dispatch = useAppDispatch();
+
+  // if (role !== undefined && role !== user?.role) {
+  //   dispatch(logout());
+  //   return <Navigate to="/login" replace={true} />;
+  // }
   if (!token) {
     return <Navigate to="/login" replace={true} />;
   }
